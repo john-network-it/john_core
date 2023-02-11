@@ -1,0 +1,93 @@
+version: '3.8'
+services:
+##  WEBPROXYSERVER  ##
+    webproxyserver:
+        container_name: john_webproxyserver
+        build:
+            context: ./webproxy
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 80:80
+            - 443:443
+        links:
+            - fbwebserver
+            - webserver
+        volumes:
+            - ssl:/etc/nginx/ssl/
+        networks:
+            - network
+##  /WEBPROXYSERVER  ##
+##  CERTBOT  ##
+    certbot:
+        container_name: john_certbot
+        build:
+            context: ./certbot
+            dockerfile: Dockerfile
+        stdin_open: true
+        tty: true
+        volumes:
+            - ssl:/etc/letsencrypt/
+        networks:
+            - network
+##  /CERTBOT  ##
+##  WEBSERVER  ##
+    webserver:
+        container_name: john_webserver
+        build:
+            context: ./webapp
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        networks:
+            - network
+##  /WEBSERVER  ##
+##  FBWEBSERVER  ##
+    fbwebserver:
+        container_name: john_fbwebserver
+        build:
+            context: ./fbweb
+            dockerfile: Dockerfile
+        restart: always
+        networks:
+            - network
+##  /FBWEBSERVER  ##
+##  DATABASE  ##
+    database:
+        container_name: john_database
+        build:
+            context: ./db
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: johnpw
+            MYSQL_DATABASE: john
+            MYSQL_USER: john
+            MYSQL_PASSWORD: johnpw
+        volumes:
+            - db:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        networks:
+            - network
+##  /DATABASE  ##
+##  PHPMYADMIN  ##
+    phpmyadmin:
+        container_name: john_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - '8080:80'
+        environment:
+            PMA_HOST: database
+        depends_on:
+            - database
+        links:
+           - database
+        networks:
+           - network
+##  /PHPMYADMIN  ##
+networks:
+  network:
+    driver: bridge
+volumes:
+  db:
+  ssl:
