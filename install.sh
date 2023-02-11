@@ -33,6 +33,13 @@ if [[ $os_name == *"Raspbian"* ]]; then
     echo -e "$CR \nJ.O.H.N. Server may not work properly on Raspberry Pi OS! $NC"
 fi
 
+####################################### Check internet #######################################
+
+if [[ "$(ping -c 1 8.8.8.8 | grep '100% packet loss' )" != "" ]]; then
+  echo -e "$CR \nJ.O.H.N. Server needs an active internet connection for the installation! $NC"
+  exit 1
+fi
+
 ####################################### Check root #######################################
 if [[ $EUID > 0 ]]; then
     echo -e "$CR \nThis script has to be run with root! $NC"
