@@ -92,8 +92,24 @@ apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 ####################################### Portainer installation #######################################
 echo -e "$CC \nInstalling Portainer $NC"
 
+docker stop portainer
+docker rm portainer
+
 docker volume create portainer_data
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+####################################### J.O.H.N. service installation #######################################
+echo -e "$CC \nInstalling J.O.H.N. Service $NC"
+
+systemctl stop john.service
+systemctl disable john.service
+rm -f /etc/systemd/system/john.service
+systemctl daemon-reload
+
+cp configs/server/systemd/john.service /etc/systemd/system/john.service 
+systemctl daemon-reload
+systemctl enable john.service
+systemctl start john.service
 
 ####################################### J.O.H.N. installation #######################################
 echo -e "$CC \nInstalling J.O.H.N. $NC"
@@ -102,17 +118,6 @@ rm -rf /var/john
 
 mkdir -p /var/john/
 cp docker/* /var/john/
-
-####################################### J.O.H.N. service installation #######################################
-echo -e "$CC \nInstalling J.O.H.N. Service $NC"
-
-rm -f /etc/systemd/system/john.service
-systemctl daemon-reload
-
-cp configs/server/systemd/john.service /etc/systemd/system/john.service 
-systemctl daemon-reload
-systemctl enable john.service
-systemctl start john.service
 
 ####################################### Update, Upgrade and Cleanup System #######################################
 echo -e "$CC \nUpdating, Upgrading and Cleaning System.. $NC"
