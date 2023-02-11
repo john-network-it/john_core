@@ -36,7 +36,8 @@ fi
 echo -e "$CC \nUpdating and upgrading System.. $NC"
 
 apt update -y
-apt upgrade -y
+apt full-upgrade -y
+apt autoremove -y
 
 ####################################### Install dependencies #######################################
 echo -e "$CC \nInstalling dependencies $NC"
@@ -122,7 +123,9 @@ cp docker/* /var/john/
 ####################################### Update, Upgrade and Cleanup System #######################################
 echo -e "$CC \nUpdating, Upgrading and Cleaning System.. $NC"
 
-apt update && apt upgrade -y && apt autoremove -y
+apt update -y
+apt full-upgrade -y
+apt autoremove -y
 
 ####################################### END SPLASH #######################################
 echo ""
