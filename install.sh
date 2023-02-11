@@ -21,12 +21,14 @@ echo "########################################"
 echo ""
 
 ####################################### Check compatibility #######################################
+
+os_name=$(grep 'PRETTY_NAME' /etc/os-release)
+
 if ! [ -f "/etc/debian_version" ]; then
     echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
     exit 1
 fi
 
-os_name=$(grep 'PRETTY_NAME' ´/etc/os-release)
 if [[ $os_name == *"Raspbian"* ]]; then
     echo -e "$CR \nJ.O.H.N. Server does not works with Raspberry Pi OS! $NC"
     exit 1
