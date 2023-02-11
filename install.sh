@@ -22,7 +22,18 @@ echo ""
 
 ####################################### Check compatibility #######################################
 if ! [ -f "/etc/debian_version" ]; then
-    echo -e "$CR \nJ.O.H.N. Server only works on debian! $NC"
+    echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
+    exit 1
+fi
+
+os_name=$(grep 'PRETTY_NAME' ´/etc/os-release)
+if [ $os_name == *"Raspbian"* ]; then
+    echo -e "$CR \nJ.O.H.N. Server does not works with Raspberry Pi OS! $NC"
+    exit 1
+fi
+
+if ! [ $os_name == *"Debian"* ]; then
+    echo -e "$CR \nJ.O.H.N. Server only works with Debian! $NC"
     exit 1
 fi
 
@@ -118,7 +129,7 @@ echo -e "$CC \nInstalling J.O.H.N. $NC"
 rm -rf /var/john
 
 mkdir -p /var/john/
-cp docker/* /var/john/
+cp -R docker/* /var/john/
 
 ####################################### Update, Upgrade and Cleanup System #######################################
 echo -e "$CC \nUpdating, Upgrading and Cleaning System.. $NC"
