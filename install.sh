@@ -27,12 +27,12 @@ if ! [ -f "/etc/debian_version" ]; then
 fi
 
 os_name=$(grep 'PRETTY_NAME' ´/etc/os-release)
-if [ $os_name == *"Raspbian"* ]; then
+if [[ $os_name == *"Raspbian"* ]]; then
     echo -e "$CR \nJ.O.H.N. Server does not works with Raspberry Pi OS! $NC"
     exit 1
 fi
 
-if ! [ $os_name == *"Debian"* ]; then
+if ! [[ $os_name == *"Debian"* ]]; then
     echo -e "$CR \nJ.O.H.N. Server only works with Debian! $NC"
     exit 1
 fi
