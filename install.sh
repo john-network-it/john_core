@@ -30,13 +30,7 @@ if ! [ -f "/etc/debian_version" ]; then
 fi
 
 if [[ $os_name == *"Raspbian"* ]]; then
-    echo -e "$CR \nJ.O.H.N. Server does not works with Raspberry Pi OS! $NC"
-    exit 1
-fi
-
-if ! [[ $os_name == *"Debian"* ]]; then
-    echo -e "$CR \nJ.O.H.N. Server only works with Debian! $NC"
-    exit 1
+    echo -e "$CR \nJ.O.H.N. Server may not work properly on Raspberry Pi OS! $NC"
 fi
 
 ####################################### Check root #######################################
@@ -90,19 +84,24 @@ rm -rf /var/lib/containerd
 ####################################### Install Docker #######################################
 echo -e "$CC \nInstalling Docker $NC"
 
-## Keyring
-mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+if [[ $os_name == *"Debian"* ]]; then
+    ## Keyring
+    mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-apt update
+    apt update
 
-## Main installation
-apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-
+    ## Main installation
+    apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+else
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    bash ./get-docker.sh --dry-run
+    rm ./get-docker.sh -f
+fi
 ####################################### Portainer installation #######################################
 echo -e "$CC \nInstalling Portainer $NC"
 
