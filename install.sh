@@ -30,13 +30,17 @@ echo -e "$CC \nChecking compatibility.. $NC"
 
 os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
-if ! [ -f "/etc/debian_version" ]; then
-    echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
-    exit 1
+if ! [ -d "/var/john" ]; then
+    echo -e "$CR \nJ.O.H.N. seems to be installed. This execution may brick your system! $NC"
 fi
 
 if [[ $os_name == *"Raspbian"* ]]; then
     echo -e "$CR \nJ.O.H.N. Server may not work properly on Raspberry Pi OS! $NC"
+fi
+
+if ! [ -f "/etc/debian_version" ]; then
+    echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
+    exit 1
 fi
 
 echo -e "$CG \nOK. $NC"
