@@ -156,6 +156,16 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 echo -e "$CG \nOK. $NC"
 
+####################################### J.O.H.N. installation #######################################
+
+echo -e "$CC \nInstalling J.O.H.N. .. $NC"
+
+rm -rf /var/john
+mkdir -p /var/john/
+cp -R docker/* /var/john/
+
+echo -e "$CG \nOK. $NC"
+
 ####################################### J.O.H.N. service installation #######################################
 
 echo -e "$CC \nInstalling J.O.H.N. Service.. $NC"
@@ -169,16 +179,6 @@ cp configs/server/systemd/john.service /etc/systemd/system/john.service
 systemctl daemon-reload
 systemctl enable john.service
 systemctl start john.service
-
-echo -e "$CG \nOK. $NC"
-
-####################################### J.O.H.N. installation #######################################
-
-echo -e "$CC \nInstalling J.O.H.N. .. $NC"
-
-rm -rf /var/john
-mkdir -p /var/john/
-cp -R docker/* /var/john/
 
 echo -e "$CG \nOK. $NC"
 
