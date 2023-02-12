@@ -178,6 +178,7 @@ systemctl daemon-reload
 cp configs/server/systemd/john.service /etc/systemd/system/john.service 
 systemctl daemon-reload
 systemctl enable john.service
+echo -e "$CC \nStarting J.O.H.N. (this takes a while).. $NC"
 systemctl start john.service
 
 echo -e "$CG \nOK. $NC"
