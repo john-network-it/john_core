@@ -30,7 +30,7 @@ echo -e "$CC \nChecking compatibility.. $NC"
 
 os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
-if ! [ -d "/var/john" ]; then
+if [ -d "/var/john" ]; then
     echo -e "$CR \nJ.O.H.N. seems to be installed. This execution may brick your system! $NC"
 fi
 
