@@ -188,7 +188,7 @@ echo -e "$CG \nOK. $NC"
 echo -e "$CC \nUpdating and upgrading System.. $NC"
 
 apt update -y
-apt full-upgrade -y
+apt upgrade -y
 apt autoremove -y
 
 echo -e "$CG \nOK. $NC"
