@@ -1,53 +1,41 @@
-<?php 
+<?php
+require("../config/Database.php");
 
-//Config information
-$email = "your@emailaddress.com";
-$server = "google.com"; //the address to test, without the "http://"
-$port = "80";
+$services_result = mysqli_query($con, "SELECT * FROM `john_services_monitor`");
+while($row = mysqli_fetch_assoc($services_result)) {
 
+    $last_status = $row['last_status'];
+        
+    if($last_status == "maintenance") {
+        echo "Skipping check for ".$row['name'].".";
+        return;
+    } else {
+        echo "Checking status for ".$row['name']." (".$row['last_check'].").";
+    }
+        
+    $current_status = "offline";
+    $check = fSockOpen($row['ipv4'], $row['port'], $errno, $errstr, $timeout);
+    if($check) {
+        $current_status = "offline";
+        echo "Status for ".$row['name']." is Online!";
+    } else {
+        $current_status = "offline";
+        echo "Status for ".$row['name']." is offline!";
+    }
 
-//Create a text file to store the result of the ping for comparison
-$db = "pingdata.txt";
+    echo "Status check for ".$row['name']." is completed.";
 
-if (file_exists($db)):
-    $previous_status = file_get_contents($db, true);
-else:
-    file_put_contents($db, "up");
-    $previous_status = "up";
-endif;
-
-//Ping the server and check if it's up
-$current_status =  ping($server, $port, 10);
-
-//If it's down, log it and/or email the owner
-if ($current_status == "down"):
-
-    echo "Server is down! ";
-    file_put_contents($db, "down");
-
-    if ($previous_status == "down"):
-        mail($email, "Server is down", "Your server is down.");
-        echo "Email sent.";     
-    endif;  
-
-else:
-
-    echo "Server is up! ";
-    file_put_contents($db, "up");
-
-    if ($previous_status == "down"):
-        mail($email, "Server is up", "Your server is back up.");
-        echo "Email sent.";
-    endif;
-
-endif;
-
-
-function ping($host, $port, $timeout)
-{ 
-  $tB = microtime(true); 
-  $fP = fSockOpen($host, $port, $errno, $errstr, $timeout); 
-  if (!$fP) { return "down"; } 
-  $tA = microtime(true); 
-  return round((($tA - $tB) * 1000), 0)." ms"; 
+    if($current_status == "offline") {
+        if($last_status == "online") {
+            mail($email, "Server is offline", "Your Server is offline");
+            echo "A mail has been sent because the server went offline...";
+        }
+    } else {
+        if($last_status == "offline") {
+            mail($email, "Server is back online", "Your server is back online");
+            echo "A mail has been sent because the server went back online...";
+        }
+    }
+    
 }
+?>
