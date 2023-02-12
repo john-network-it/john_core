@@ -23,6 +23,8 @@ echo ""
 
 ####################################### Check compatibility #######################################
 
+echo -e "$CC \nChecking compatibility.. $NC"
+
 os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
 if ! [ -f "/etc/debian_version" ]; then
@@ -36,12 +38,16 @@ fi
 
 ####################################### Check internet #######################################
 
+echo -e "$CC \nChecking internet connection.. $NC"
+
 if [[ "$(ping -c 1 8.8.8.8 | grep '100% packet loss' )" != "" ]]; then
   echo -e "$CR \nJ.O.H.N. Server needs an active internet connection for the installation! $NC"
   exit 1
 fi
 
 ####################################### Check root #######################################
+
+echo -e "$CC \nChecking root.. $NC"
 
 if [[ $EUID > 0 ]]; then
     echo -e "$CR \nThis script has to be run with root! $NC"
@@ -58,18 +64,21 @@ apt autoremove -y
 
 ####################################### Install dependencies #######################################
 
-echo -e "$CC \nInstalling dependencies $NC"
+echo -e "$CC \nInstalling dependencies.. $NC"
 
 apt install sudo curl nano git ca-certificates apt-transport-https lsb-release gnupg -y
 apt install -f
 
 ####################################### Set system settings #######################################
 
-echo -e "$CC \nChanging system settings $NC"
+echo -e "$CC \nConfiguring System.. $NC"
+echo -e "$CC \nConfiguring Timezone.. $NC"
 
 ## Timedatectl
 echo -e "$CC \nSet time and date $NC"
 timedatectl set-timezone Europe/Berlin
+
+echo -e "$CC \nConfiguring MOTD.. $NC"
 
 ## MOTD
 echo -e "$CR \nSet MOTD $NC"
@@ -78,7 +87,7 @@ cp configs/server/motd/motd /etc/motd
 
 ####################################### Install and configure Fail2Ban #######################################
 
-echo -e "$CC \nInstalling Fail2ban $NC"
+echo -e "$CC \nInstalling Fail2Ban.. $NC"
 
 apt purge fail2ban -y
 rm -rf /etc/fail2ban
@@ -89,7 +98,7 @@ systemctl restart fail2ban
 
 ####################################### Remove old Docker files #######################################
 
-echo -e "$CC \nRemoving old Docker files $NC"
+echo -e "$CC \nPurging Docker.. $NC"
 
 apt purge docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 rm -rf /var/lib/docker
@@ -97,7 +106,7 @@ rm -rf /var/lib/containerd
 
 ####################################### Install Docker #######################################
 
-echo -e "$CC \nInstalling Docker $NC"
+echo -e "$CC \nInstalling Docker.. $NC"
 
 if [[ $os_name == *"Debian"* ]]; then
     ## Keyring
@@ -120,7 +129,7 @@ else
 fi
 ####################################### Portainer installation #######################################
 
-echo -e "$CC \nInstalling Portainer $NC"
+echo -e "$CC \nInstalling Portainer.. $NC"
 
 docker stop portainer
 docker rm portainer
@@ -130,7 +139,7 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 
 ####################################### J.O.H.N. service installation #######################################
 
-echo -e "$CC \nInstalling J.O.H.N. Service $NC"
+echo -e "$CC \nInstalling J.O.H.N. Service.. $NC"
 
 systemctl stop john.service
 systemctl disable john.service
@@ -144,7 +153,7 @@ systemctl start john.service
 
 ####################################### J.O.H.N. installation #######################################
 
-echo -e "$CC \nInstalling J.O.H.N. $NC"
+echo -e "$CC \nInstalling J.O.H.N. .. $NC"
 
 rm -rf /var/john
 mkdir -p /var/john/
@@ -152,7 +161,7 @@ cp -R docker/* /var/john/
 
 ####################################### Update, Upgrade and Cleanup System #######################################
 
-echo -e "$CC \nUpdating, Upgrading and Cleaning System.. $NC"
+echo -e "$CC \nUpdating and upgrading System.. $NC"
 
 apt update -y
 apt full-upgrade -y
