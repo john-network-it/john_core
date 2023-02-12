@@ -82,8 +82,6 @@ echo -e "$CG \nOK. $NC"
 
 ####################################### Set system settings #######################################
 
-echo -e "$CC \nConfiguring System.. $NC"
-
 ## Timedatectl
 echo -e "$CC \nConfiguring Timezone $NC"
 timedatectl set-timezone Europe/Berlin
@@ -91,7 +89,6 @@ echo -e "$CG \nOK. $NC"
 
 ## MOTD
 echo -e "$CC \nConfiguring MOTD.. $NC"
-echo -e "$CR \nSet MOTD $NC"
 rm -f /etc/motd
 cp configs/server/motd/motd /etc/motd
 echo -e "$CG \nOK. $NC"
