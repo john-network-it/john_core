@@ -13,7 +13,7 @@
 
    //Check if logged in
    if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-       header("location: ". getAuthURL() ."login.php?logout=2");
+       header("location: ". getAuthURL() ."login.php");
        exit;
    }
 
