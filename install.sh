@@ -117,6 +117,16 @@ echo -e "$CG \nOK. $NC"
 
 echo -e "$CC \nPurging Docker.. $NC"
 
+## Old Portainer
+docker stop portainer
+docker rm portainer
+
+## Old J.O.H.N.
+systemctl stop john.service
+systemctl disable john.service
+rm -f /etc/systemd/system/john.service
+systemctl daemon-reload
+
 apt purge docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
@@ -153,9 +163,6 @@ echo -e "$CG \nOK. $NC"
 
 echo -e "$CC \nInstalling Portainer.. $NC"
 
-docker stop portainer
-docker rm portainer
-
 docker volume create portainer_data
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
@@ -174,11 +181,6 @@ echo -e "$CG \nOK. $NC"
 ####################################### J.O.H.N. service installation #######################################
 
 echo -e "$CC \nInstalling J.O.H.N. Service.. $NC"
-
-systemctl stop john.service
-systemctl disable john.service
-rm -f /etc/systemd/system/john.service
-systemctl daemon-reload
 
 cp configs/server/systemd/john.service /etc/systemd/system/john.service 
 systemctl daemon-reload
