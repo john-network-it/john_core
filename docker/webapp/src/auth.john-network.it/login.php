@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $userinfo_result = mysqli_query($con, "SELECT * FROM `john_user` WHERE `email`='$email'");
     $userinfo = mysqli_fetch_array($userinfo_result);
   } else {
-    header("location: login.php?failed=1");
+    header("location: login.php?failed=2");
   }
 
   if($pass_result == null || $pass_result != 1) {
@@ -84,12 +84,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="alert alert-success" role="alert">
           <h4 class="alert-heading text-center">Logged out</h4>
           <p>You have successfully logged out of your account.</p>
-        </div>
-        <?php } ?>
-        <?php if(isset($_GET["logout"]) && $_GET["logout"] == "2") { ?>
-          <div class="alert alert-warning" role="alert">
-          <h4 class="alert-heading text-center">Warning</h4>
-          <p>You have to verify your identity before using this service!</p>
         </div>
         <?php } ?>
         <div class="mb-3">
