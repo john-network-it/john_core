@@ -127,6 +127,7 @@ systemctl disable john.service
 rm -f /etc/systemd/system/john.service
 systemctl daemon-reload
 
+## Old Docker
 apt purge docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
@@ -138,6 +139,11 @@ echo -e "$CG \nOK. $NC"
 echo -e "$CC \nInstalling Docker.. $NC"
 
 if [[ $os_name == *"Debian"* ]]; then
+
+    ## Purge old Keyring
+    rm -f /etc/apt/keyrings/docker.gpg
+    rm -f /etc/apt/sources.list.d/docker.list
+
     ## Keyring
     mkdir -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
