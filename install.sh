@@ -128,7 +128,7 @@ rm -f /etc/systemd/system/john.service
 systemctl daemon-reload
 
 ## Old Docker
-apt purge docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
 
@@ -145,17 +145,17 @@ if [[ $os_name == *"Debian"* ]]; then
     rm -f /etc/apt/sources.list.d/docker.list
 
     ## Keyring
-    mkdir -p /etc/apt/keyrings
+    mkdir -m 0755 -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
     echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-      $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
     apt update
 
     ## Main installation
-    apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+    apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 else
     curl -fsSL https://get.docker.com -o get-docker.sh
     bash ./get-docker.sh --dry-run
