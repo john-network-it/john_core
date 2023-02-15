@@ -117,20 +117,18 @@ echo -e "$CG \nOK. $NC"
 
 echo -e "$CC \nPurging Docker.. $NC"
 
-## Stop all containers
-docker stop $(sudo docker ps -a -q)
-
-## Remove Portainer
-docker rm portainer
-
 ## Remove J.O.H.N.
 systemctl stop john.service
 systemctl disable john.service
 rm -f /etc/systemd/system/john.service
 systemctl daemon-reload
 
+## Stop and remove all container
+docker stop $(docker ps -a -q)
+docker remove $(docker ps -a -q)
+
 ## Remove unused data
-docker system prune -a
+docker system prune -a -f
 
 ## Remove Docker
 apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
