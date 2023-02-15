@@ -128,7 +128,7 @@ rm -f /etc/systemd/system/john.service
 systemctl daemon-reload
 
 ## Old Docker
-apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
 
@@ -155,7 +155,7 @@ if [[ $os_name == *"Debian"* ]]; then
     apt update
 
     ## Main installation
-    apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 else
     curl -fsSL https://get.docker.com -o get-docker.sh
     bash ./get-docker.sh --dry-run
