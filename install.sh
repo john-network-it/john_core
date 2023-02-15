@@ -131,7 +131,8 @@ docker remove $(docker ps -a -q)
 docker system prune -a -f
 
 ## Remove Docker
-apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+systemctl stop docker.socket
+apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras -y
 
 rm -rf /var/lib/docker
 rm -rf /var/lib/containerd
