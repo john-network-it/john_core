@@ -9,7 +9,7 @@ Group=docker
 Type=oneshot
 RemainAfterExit=true
 WorkingDirectory=/var/john/
-ExecStartPre=/usr/bin/docker compose down --rmi local -v
+ExecStartPre=/usr/bin/docker compose down --rmi local
 ExecStart=/usr/bin/docker compose -p "john" up -d --remove-orphans
 ExecStop=/usr/bin/docker compose down
 
