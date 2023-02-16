@@ -34,6 +34,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $db_password = $userinfo['password'];
   $form_password = hash('sha512', $password);
+  
+  echo $password;
+  echo $form_password;
+  echo $db_password;
 
   if($form_password == $db_password) {
     $_SESSION['id'] = $userinfo['id'];
