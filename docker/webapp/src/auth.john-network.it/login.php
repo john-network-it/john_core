@@ -17,6 +17,9 @@ if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true) {
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST["email"];
   $password = $_POST["password"];
+  
+  echo $password;
+  echo "1-";
 
   if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $pass_query = mysqli_query($con, "SELECT * FROM `john_user` WHERE `email`='$email'");
@@ -36,7 +39,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $form_password = hash('sha512', $password);
   
   echo $password;
+  echo "2-";
   echo $form_password;
+  echo "3-";
   echo $db_password;
 
   if($form_password == $db_password) {
