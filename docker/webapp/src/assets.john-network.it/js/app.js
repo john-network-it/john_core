@@ -619,28 +619,28 @@ var handlePageErrors = function() {
 			})
         	}
         
-        	if(pageErrors == 3) {
+        	if(pageErrors == 2) {
             		Toast.fire({
 				title: "Some problems has been detected!",
 				icon: 'warning',
 			})
         	}
 
-        	if(pageErrors == 5) {
+        	if(pageErrors == 3) {
             		Toast.fire({
 				title: "The WebApp seems to be unstable!",
 				icon: 'warning',
 			})
         	}
 
-        	if(pageErrors == 7) {
+        	if(pageErrors == 4) {
             		Toast.fire({
 				title: "The WebApp detected critical errors!",
 				icon: 'error',
 			})
         	}
 
-        	if(pageErrors >= 10) {
+        	if(pageErrors >= 5) {
             		location.reload();
         	}
     	};
