@@ -615,28 +615,28 @@ var handlePageErrors = function() {
         	if(pageErrors == 1) {
             		Toast.fire({
 				title: "A problem has been detected!",
-				icon: 'info'
+				icon: 'info',
 			})
         	}
         
         	if(pageErrors == 3) {
             		Toast.fire({
 				title: "Some problems has been detected!",
-				icon: 'warning'
+				icon: 'warning',
 			})
         	}
 
         	if(pageErrors == 5) {
             		Toast.fire({
 				title: "The WebApp seems to be unstable!",
-				icon: 'warning'
+				icon: 'warning',
 			})
         	}
 
         	if(pageErrors == 7) {
             		Toast.fire({
 				title: "The WebApp detected critical errors!",
-				icon: 'error'
+				icon: 'error',
 			})
         	}
 
