@@ -596,6 +596,13 @@ var handleInternetConnection = function() {
 
 /* handle Page errors */
 var handlePageErrors = function() {
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 2500,
+		timerProgressBar: true,
+	})
 	var pageErrors = 0;
 
     	window.onerror = function() {
@@ -606,23 +613,35 @@ var handlePageErrors = function() {
         	}
 
         	if(pageErrors == 1) {
-            		alert("An error occured!");
+            		Toast.fire({
+				title: "A problem has been detected!",
+				icon: 'info'
+			})
         	}
         
         	if(pageErrors == 3) {
-            		alert("Some problems has been detected!");
+            		Toast.fire({
+				title: "Some problems has been detected!",
+				icon: 'warning'
+			})
         	}
 
         	if(pageErrors == 5) {
-            		alert("The WebApp seems to be unstable!");
+            		Toast.fire({
+				title: "The WebApp seems to be unstable!",
+				icon: 'warning'
+			})
         	}
 
         	if(pageErrors == 7) {
-            		alert("There are critical errors on the page!");
+            		Toast.fire({
+				title: "The WebApp detected critical errors!",
+				icon: 'error'
+			})
         	}
 
         	if(pageErrors >= 10) {
-            		alert("Website reload");
+            		location.reload();
         	}
     	};
 }
