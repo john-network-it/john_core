@@ -580,15 +580,15 @@ var handleInternetConnection = function() {
 
 	$.ajax({
 		url: window.location.href,
-        type: "HEAD",
-        timeout: 2500,
+        	type: "HEAD",
+        	timeout: 2500,
 		error: function() {
-            console.log("[J.O.H.N.] The internet connection of the client has been disconnected.");
-            Toast.fire({
-				title: "Internet connection lost"
+        		console.log("[J.O.H.N.] Lost connection to server!");
+            		Toast.fire({
+				title: "Lost connection to server!"
 			})
 			return;
-        }
+        	}
  	});
 
 	setTimeout(handleInternetConnection, 5000);
