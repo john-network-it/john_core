@@ -594,6 +594,39 @@ var handleInternetConnection = function() {
 	setTimeout(handleInternetConnection, 5000);
 }
 
+/* handle Page errors */
+var handlePageErrors = function() {
+	var pageErrors = 0;
+
+    	window.onerror = function() {
+        	pageErrors++;
+
+        	if(pageErrors < 0) {
+            		location.reload();
+        	}
+
+        	if(pageErrors == 1) {
+            		alert("An error occured!");
+        	}
+        
+        	if(pageErrors == 3) {
+            		alert("Some problems has been detected!");
+        	}
+
+        	if(pageErrors == 5) {
+            		alert("The WebApp seems to be unstable!");
+        	}
+
+        	if(pageErrors == 7) {
+            		alert("There are critical errors on the page!");
+        	}
+
+        	if(pageErrors >= 10) {
+            		alert("Website reload");
+        	}
+    	};
+}
+
 
 
 /* Application Controller */
@@ -624,6 +657,7 @@ var App = function () {
 			handleTooltipPopoverActivation();
 			handleFullScreen();
 			handleInternetConnection();
+			handlePageErrors();
 		},
 		scrollTop: function() {
 			window.scrollTo({top: 0, behavior: 'smooth'});
