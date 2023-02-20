@@ -40,8 +40,7 @@ if ! [ -f "/etc/debian_version" ]; then
 fi
 
 if [[ $os_name == *"Raspbian"* ]]; then
-    echo -e "$CR \nJ.O.H.N. Server does not work on Raspberry Pi OS! $NC"
-    exit 1
+    echo -e "$CR \nJ.O.H.N. Server may not work properly on Raspberry Pi OS! $NC"
 fi
 
 echo -e "$CG \nOK. $NC"
