@@ -180,6 +180,12 @@
             <span class="menu-text">Dashboard</span>
             </a>
          </div>
+         <div class="menu-item">
+            <a href="server-info.php" class="menu-link">
+            <span class="menu-icon"><i class="fa fa-server"></i></span>
+            <span class="menu-text">Server information</span>
+            </a>
+         </div>
       </div>
       <?php if($usergroup['groupid'] == "1") { ?>
       <div class="p-3 px-4 mt-auto">
