@@ -186,14 +186,8 @@
             </a>
          </div>
          <div class="menu-item">
-            <a href="device-map.php" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-server"></i></span>
-            <span class="menu-text">Device Map</span>
-            </a>
-         </div>
-         <div class="menu-item">
             <a href="status.php" class="menu-link">
-            <span class="menu-icon"><i class="fa fa-map-location-dot"></i></span>
+            <span class="menu-icon"><i class="fa fa-server"></i></span>
             <span class="menu-text">Service Status</span>
             </a>
          </div>
