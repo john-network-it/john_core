@@ -187,13 +187,11 @@
             </a>
          </div>
       </div>
-      <?php if($usergroup['groupid'] == "1") { ?>
       <div class="p-3 px-4 mt-auto">
-         <a href="../index.php" class="btn d-block btn-outline-theme">
+         <a href="<?php echo getDefaultURL(); ?>" class="btn d-block btn-outline-theme">
          <i class="fa fa-house me-2 ms-n2 opacity-5"></i> User Section
          </a>
       </div>
-      <?php } ?>
    </div>
 </div>
 <button class="app-sidebar-mobile-backdrop" data-toggle-target=".app" data-toggle-class="app-sidebar-mobile-toggled"></button>
