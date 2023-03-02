@@ -194,7 +194,7 @@
       </div>
       <?php if($usergroup['groupid'] == "1") { ?>
       <div class="p-3 px-4 mt-auto">
-         <a href="admin/index.php" class="btn d-block btn-outline-theme">
+         <a href="<?php echo getDefaultURL()."admin/"; ?>" class="btn d-block btn-outline-theme">
          <i class="fa fa-screwdriver-wrench me-2 ms-n2 opacity-5"></i> Administration
          </a>
       </div>
