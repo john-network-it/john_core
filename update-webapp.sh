@@ -30,10 +30,6 @@ echo -e "$CC \nChecking compatibility.. $NC"
 
 os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
-if [ -d "/var/john" ]; then
-    echo -e "$CR \nJ.O.H.N. seems to be installed. This execution may brick your system! $NC"
-fi
-
 if ! [ -f "/etc/debian_version" ]; then
     echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
     exit 1
@@ -81,10 +77,10 @@ echo -e "$CG \nOK. $NC"
 echo -e "$CC \nPurging and updating.. $NC"
 
 systemctl stop john
-rm -rf /var/john
+rm -rf /var/john/webapp/
 git clone https://github.com/john-network-it/john_core.git
-mkdir -p /var/john/
-cp -R john_core/docker/webapp/src/* /var/john/
+mkdir -p /var/john/webapp/
+cp -R john_core/docker/webapp/src/* /var/john/webapp/
 systemctl start john
 
 ####################################### Remove tmp #######################################
