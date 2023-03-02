@@ -80,7 +80,7 @@ systemctl stop john
 rm -rf /var/john/webapp/
 git clone https://github.com/john-network-it/john_core.git
 mkdir -p /var/john/webapp/
-cp -R john_core/docker/webapp/src/* /var/john/webapp/
+cp -R john_core/docker/webapp/* /var/john/webapp/
 systemctl start john
 
 ####################################### Remove tmp #######################################
