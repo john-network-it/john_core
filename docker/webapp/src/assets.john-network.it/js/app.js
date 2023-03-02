@@ -347,6 +347,9 @@ var handleSidebarActiveLink = function() {
 	if(url == window.location.origin || url == window.location.origin+"/") {
 		url = window.location.origin+"/index.php"
 	}
+	if(url == window.location.origin."/admin" || url == window.location.origin+"/admin/") {
+		url = window.location.origin+"/admin/index.php"
+	}
 	$('div.menu-item a').filter(function() {
 		return this.href == url;
 	}).parent().addClass('active');
