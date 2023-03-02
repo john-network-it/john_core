@@ -38,14 +38,11 @@
   <div id="content" class="app-content">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<?php echo getDefaultURL(); ?>">HOME</a></li>
-      <li class="breadcrumb-item active">SERVICE STATUS</li>
+      <li class="breadcrumb-item active">SERVER INFO</li>
     </ol>
-
-    <div class="row" id="slist"></div>
 
     <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
   </div>
 <?php include("../../config/includes/footer.php"); ?>
-<script src="<?php echo getAssetsURL(); ?>js/status.js"></script>
 </body>
 </html>
