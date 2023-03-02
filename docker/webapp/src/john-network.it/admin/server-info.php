@@ -40,6 +40,8 @@
       <li class="breadcrumb-item"><a href="<?php echo getDefaultURL(); ?>">HOME</a></li>
       <li class="breadcrumb-item active">SERVER INFO</li>
     </ol>
+     
+     <?php phpinfo(); ?>
 
     <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
   </div>
