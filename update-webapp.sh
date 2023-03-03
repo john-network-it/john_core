@@ -32,6 +32,7 @@ os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
 if ! [ -d "/var/john" ]; then
     echo -e "$CR \nNo J.O.H.N. installation found! $NC"
+    exit 1
 fi
 
 
