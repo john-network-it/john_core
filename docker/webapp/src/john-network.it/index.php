@@ -343,6 +343,9 @@
       Toast.fire({
          icon: "success",
          title: "You have successfully logged into your account."
+      }).then((result) => {
+         var url = document.location.href;
+         window.history.pushState({}, "", url.split("?")[0]);
       })
       </script>
       <?php } ?>
