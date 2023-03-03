@@ -34,7 +34,7 @@
 </head>
 <body>
 <div id="app" class="app">
-<?php include("../../config/includes/sidebar.user.php"); ?>
+<?php include("../../config/includes/sidebar.admin.php"); ?>
   <div id="content" class="app-content">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<?php echo getDefaultURL(); ?>">HOME</a></li>
