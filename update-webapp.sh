@@ -30,6 +30,11 @@ echo -e "$CC \nChecking compatibility.. $NC"
 
 os_name=$(grep 'PRETTY_NAME' /etc/os-release)
 
+if ! [ -d "/var/john" ]; then
+    echo -e "$CR \nNo J.O.H.N. installation found! $NC"
+fi
+
+
 if ! [ -f "/etc/debian_version" ]; then
     echo -e "$CR \nJ.O.H.N. Server only works on Debian based systems! $NC"
     exit 1
