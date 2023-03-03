@@ -11,4 +11,4 @@ COPY john.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default.conf
 RUN a2dissite default-ssl.conf
 RUN service apache2 restart
-RUN echo ' */5 * * * * /usr/bin/php /var/www/html/cron/statusUpdater.php > /var/www/html/cron/statusUpdater.log' >> /etc/crontabs/root
+RUN echo ' */5 * * * * /usr/bin/php /var/www/html/cron/statusUpdater.php > /var/www/html/cron/statusUpdater.log' >> /etc/crontab
