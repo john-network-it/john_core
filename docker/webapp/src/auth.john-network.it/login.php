@@ -103,5 +103,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
   <?php include("../config/includes/footer.php"); ?>
+  <?php if(isset($_GET["login"]) && $_GET["login"] == "1") { ?>
+  <script type="text/javascript">
+  $(function(){
+    function remove_url_parameters(){
+      var url = document.location.href;
+      window.history.pushState({}, "", url.split("?")[0]);
+    };
+    window.setTimeout( remove_url_paramters, 5000 ); // 5 seconds
+  });
+  </script>
+  <?php } ?>
 </body>
 </html>
