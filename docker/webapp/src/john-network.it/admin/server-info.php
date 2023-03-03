@@ -36,10 +36,11 @@
 <div id="app" class="app">
 <?php include("../../config/includes/sidebar.admin.php"); ?>
   <div id="content" class="app-content">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo getDefaultURL(); ?>">HOME</a></li>
-      <li class="breadcrumb-item active">SERVER INFO</li>
-    </ol>
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="<?php echo getDefaultURL(); ?>">HOME</a></li>
+         <li class="breadcrumb-item"><a href="<?php echo getDefaultURL()."admin/"; ?>">ADMINISTRATION</a></li>
+         <li class="breadcrumb-item active">SERVER INFO</li>
+      </ol>
      
     <?php
     ob_start();
