@@ -110,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       var url = document.location.href;
       window.history.pushState({}, "", url.split("?")[0]);
     };
-    window.setTimeout( remove_url_paramters, 5000 ); // 5 seconds
+    window.setTimeout( remove_url_paramters, 2500 );
   });
   </script>
   <?php } ?>
