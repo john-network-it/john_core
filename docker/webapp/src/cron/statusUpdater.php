@@ -27,12 +27,10 @@ while($row = mysqli_fetch_assoc($services_result)) {
 
     if($current_status == "offline") {
         if($last_status == "online") {
-            mail($email, "Server is offline", "Your Server is offline");
             echo "A mail has been sent because the server went offline...";
         }
     } else {
         if($last_status == "offline") {
-            mail($email, "Server is back online", "Your server is back online");
             echo "A mail has been sent because the server went back online...";
         }
     }
