@@ -66,7 +66,7 @@
             #phpinfo .v {max-width: 300px; overflow-x: auto; word-wrap: break-word;}
             #phpinfo .v i {color: #999;}
             #phpinfo img {float: right; border: 0;}
-            #phpinfo hr {width: 934px; background-color: #ccc; border: 0; height: 1px;}
+            #phpinfo hr {background-color: #ccc; border: 0; height: 1px;}
         </style>
         <div id='phpinfo'>
             $phpinfo
