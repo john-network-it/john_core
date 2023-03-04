@@ -62,7 +62,7 @@
             #phpinfo h1 {font-size: 150%;}
             #phpinfo h2 {font-size: 125%;}
             #phpinfo .p {text-align: left;}
-            #phpinfo .e {width: 300px; font-weight: bold;}
+            #phpinfo .e {font-weight: bold;}
             #phpinfo .h {font-weight: bold;}
             #phpinfo .v {max-width: 300px; overflow-x: auto; word-wrap: break-word;}
             #phpinfo .v i {color: #999;}
