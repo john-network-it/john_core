@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
   <?php include("../config/includes/footer.php"); ?>
-  <?php if(isset($_GET["failed"]) || isset($_GET["logout"]) { ?>
+  <?php if(isset($_GET["failed"]) || isset($_GET["logout"])) { ?>
   <script type="text/javascript">
   $(function(){
     function remove_url_parameters(){
