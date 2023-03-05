@@ -577,6 +577,8 @@ var handleInternetConnection = function() {
 		timerProgressBar: true,
 		icon: 'error',
 	})
+	
+	var lastCheck = true;
 
 	$.ajax({
 		url: window.location.href,
@@ -587,8 +589,16 @@ var handleInternetConnection = function() {
             		Toast.fire({
 				title: "Lost connection to server!"
 			})
+			lastCheck = false;
 			return;
         	}
+		success: function() {
+			if(lastCheck == false) {
+				location.reload();
+			}
+			lastCheck = true;
+			return;
+		}
  	});
 
 	setTimeout(handleInternetConnection, 5000);
