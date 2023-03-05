@@ -591,7 +591,7 @@ var handleInternetConnection = function() {
 			})
 			lastCheck = false;
 			return;
-        	}
+        	},
 		success: function() {
 			if(lastCheck == false) {
 				location.reload();
