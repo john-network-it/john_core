@@ -584,21 +584,19 @@ var handleInternetConnection = function() {
 		url: window.location.href,
         	type: "HEAD",
         	timeout: 2500,
+		success: function() {
+			if(lastCheck == false) {
+				location.reload();
+			}
+			lastCheck = true;
+		},
 		error: function() {
         		console.log("[J.O.H.N.] Lost connection to server!");
             		Toast.fire({
 				title: "Lost connection to server!"
 			})
 			lastCheck = false;
-			return;
-        	},
-		success: function() {
-			if(lastCheck == false) {
-				location.reload();
-			}
-			lastCheck = true;
-			return;
-		}
+        	}
  	});
 
 	setTimeout(handleInternetConnection, 5000);
