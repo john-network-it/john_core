@@ -345,7 +345,7 @@ var handleSidebarMenu = function() {
 var handleSidebarActiveLink = function() {
 	var url = window.location.toString().split('?')[0];
 	if(url == window.location.origin+"/admin" || url == window.location.origin+"/admin/") {
-                url = window.locatiom.origin+"/admin/index.php";
+                url = window.location.origin+"/admin/index.php";
 	} else if(url == window.location.origin || url == window.location.origin+"/") {
 		url = window.location.origin+"/index.php";
 	}
