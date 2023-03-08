@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <label class="form-label">Password <span class="text-danger">*</span></label>
             <a tabindex="4" href="#" class="ms-auto text-white text-decoration-none text-opacity-50">Forgot password?</a>
           </div>
-          <input tabindex="2" type="password" class="form-control form-control-lg bg-white bg-opacity-5" name="password" placeholder="Password" required>
+          <input tabindex="2" type="password" id="password" class="form-control form-control-lg bg-white bg-opacity-5" name="password" placeholder="Password" required>
         </div>
         <button tabindex="3" type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">Sign In</button>
       </form>
