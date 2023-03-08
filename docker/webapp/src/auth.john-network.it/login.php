@@ -103,6 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </div>
   <?php include("../config/includes/footer.php"); ?>
+  <script src="https://assets.john-network.it/js/login.js" type="text/javascript"></script>
   <?php if(isset($_GET["failed"]) || isset($_GET["logout"])) { ?>
   <script type="text/javascript">
   $(function(){
